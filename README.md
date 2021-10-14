@@ -55,23 +55,21 @@ Use the `BLANK_README.md` to get started.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-first you should register to the service by using this API  
- ```sh
-  /user
-  ```
-After you register you should log in to get your valid token -valid for one day- to can access the service.
-```sh
-  /login  
-  ```
-last you can Access the method 1 by: /transactions/method1 and method 2 by: /transactions/method2
+First, you should register to the service by using this API (`/user`)
+
+Second, After registration you should log in to get your valid token -valid for one day- to can access the service (`/login `) .
+
+Last, you can Access the method 1 by: (`/transactions/method1`)  and method 2 by: (`/transactions/method2`)
   
 ### Installation
 
-1. register by: /user
-2. log in and get your valid token -passed in the response header property 'token'- by: /login
-3. put your token in the header property 'Authorization' to access any API (method1/method2)
+1. register by: (`/user`)
+2. log in and get your valid token -passed in the response header property 'token'- by: (`/login `)
+3. put your token in the header property 'Authorization' to access any API (`(/transactions/method1 , /transactions/method2)`)
 
 ## Usage
 
 You can find full APIs excamples in this postman collection 
+Collection Link: [evission-postman-collection](https://github.com)
+
 
