@@ -29,8 +29,8 @@ assume that there are users and they perform transactions. This service is recie
 this service have 2 method th handle huge data transmitted over http request as a JSON
 
 Methods:
-* the first uses multithreding 
-* the second uses Spring batch
+* The first uses Multithreding 
+* The second uses Spring batch
 
 
 
@@ -68,6 +68,6 @@ Last, you can Access the method 1 by: (`/transactions/method1`)  and method 2 by
 ## Usage
 
 You can find full APIs excamples in this postman collection 
-Collection Link: [evission-postman-collection](https://github.com)
+Collection Link: [evission-postman-collection](https://www.getpostman.com/collections/03707de19b681981cd78)
 
 
