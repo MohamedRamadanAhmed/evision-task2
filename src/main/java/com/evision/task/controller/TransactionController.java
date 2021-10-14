@@ -11,6 +11,7 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,26 +24,23 @@ import com.evision.task.service.BankTransactionService;
  *
  */
 @RestController
-
 public class TransactionController {
 
 	@Autowired
 	private BankTransactionService bankTransactionService;
 
-	@PostMapping(path = "/transactions/method1")
+	@PostMapping(path = "/transactions/method1",produces = MediaType.APPLICATION_JSON_VALUE )
 	public Response<Object> saveTransactionsMethod1(@RequestBody @Valid List<BankTransactionDto> transactions)
 			throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException,
 			JobParametersInvalidException {
-		bankTransactionService.insertTransactionsMethod1(transactions);
-		return Response.ok().setPayload(bankTransactionService.getAllTransactions());
+		return Response.ok().setPayload(bankTransactionService.insertTransactionsMethod1(transactions));
 	}
 	
-	@PostMapping(path = "/transactions/method2")
+	@PostMapping(path = "/transactions/method2",produces = MediaType.APPLICATION_JSON_VALUE )
 	public Response<Object> saveTransactionsMethod2(@RequestBody @Valid List<BankTransactionDto> transactions)
 			throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException,
 			JobParametersInvalidException {
-		bankTransactionService.insertTransactionsMethod2(transactions);
-		return Response.ok().setPayload(bankTransactionService.getAllTransactions());
+		return Response.ok().setPayload(bankTransactionService.insertTransactionsMethod2(transactions));
 	}
 
 }

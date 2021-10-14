@@ -66,7 +66,7 @@ public class Response<T> {
 	}
 
 	public void addErrorMsgToResponse(String errorMsg, Exception ex) {
-		ResponseError error = new ResponseError().setDetails(errorMsg).setMessage(ex.toString())
+		ResponseError error = new ResponseError().setDetails(errorMsg).setMessage(ex.getMessage())
 				.setTimestamp(new Date());
 		setErrors(error);
 	}

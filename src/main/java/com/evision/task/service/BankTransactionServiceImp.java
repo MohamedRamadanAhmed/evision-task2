@@ -43,7 +43,7 @@ import com.evision.task.repositry.UserRepositry;
 public class BankTransactionServiceImp implements BankTransactionService {
 
 	@Autowired
-	BankTransactionRepositry bankTransactionRepositry;
+	private BankTransactionRepositry bankTransactionRepositry;
 	@Autowired
 	private JobLauncher jobLauncher;
 	@Autowired
@@ -81,15 +81,15 @@ public class BankTransactionServiceImp implements BankTransactionService {
 			JobExecution jobExecution = null;
 			try {
 				jobExecution = jobLauncher.run(springBatchConfig.createJob(transactions), parameters);
-				System.out.println("method 1: "+getDiffBetwnTwoDates(date1,new Date().getTime()));
 			} catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException
 					| JobParametersInvalidException e) {
 				e.printStackTrace();
 			}
 			System.out.println("job status : " + jobExecution.getStatus());
-
+			Long timeInSecond = getDiffBetwnTwoDates(date1, new Date().getTime());
+			System.out.println("method 2: " + (int)(timeInSecond / 60) + " min " + "and " + timeInSecond % 60 + " seconds");
 		}).start();
-		return "working on data...";
+		return "data is being processing...";
 
 	}
 
@@ -117,16 +117,18 @@ public class BankTransactionServiceImp implements BankTransactionService {
 			futureList.forEach(listFuture -> {
 				try {
 					listFuture.get();
-					System.out.println("method 2: "+getDiffBetwnTwoDates(date1,new Date().getTime()));
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} catch (ExecutionException e) {
+				} catch (InterruptedException | ExecutionException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
 			});
+			Long timeInSecond = getDiffBetwnTwoDates(date1, new Date().getTime());
+			System.out.println("method 2: " + (int)(timeInSecond / 60) + " min " + "and " + timeInSecond % 60 + " seconds");
 
 		}).start();
-		return "working on data...";
+
+		return "data is being processing...";
 	}
 
 	private List<List<BankTransactionDto>> chunkList(List<BankTransactionDto> transactionDtos, int chunkNumber) {
@@ -144,14 +146,9 @@ public class BankTransactionServiceImp implements BankTransactionService {
 		return listList;
 	}
 
-	String getDiffBetwnTwoDates(long date1, long date2) {
-		long difference_In_Time = date2 - date1;
-
-		long difference_In_Seconds = ((difference_In_Time / 1000) % 60)%difference_In_Time;
-
-		long difference_In_Minutes = ((difference_In_Time / (1000 * 60)) % 60);
-		
-		return difference_In_Minutes + " min " + "and "+difference_In_Seconds+" seconds";
+	private Long getDiffBetwnTwoDates(long date1, long date2) {
+		long differenceInTime = date2 - date1;
+		return  (differenceInTime / 1000);
 
 	}
 
