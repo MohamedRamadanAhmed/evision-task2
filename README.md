@@ -68,6 +68,6 @@ Last, you can Access the method 1 by: (`/transactions/method1`)  and method 2 by
 ## Usage
 
 You can find full APIs excamples in this postman collection 
-Collection Link: [evission-postman-collection](https://www.getpostman.com/collections/03707de19b681981cd78)
+Collection Link: [evission-postman-collection](https://www.getpostman.com/collections/ea6395eec0ccd2950dd9)
 
 
